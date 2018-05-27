@@ -40,6 +40,12 @@ router.get('/:type', function (ctx, next) {
   }
 })
 
+router.get('/', function (ctx, next) {
+  var type = ctx.params.type
+    ctx.body = 'Service usage http://<adress>/query_type/artist/title/'
+
+})
+
 router.post('/:type/:artist/:title', function (ctx, next) {
   return new Promise(function (resolve, reject) {
     var type = ctx.params.type
@@ -52,7 +58,7 @@ router.post('/:type/:artist/:title', function (ctx, next) {
         resolve()
       })
     } else {
-      ctx.body = 'Invalid ParameterS'
+      ctx.body = 'Invalid parameter'
       resolve()
     }
   })
@@ -65,6 +71,12 @@ router.post('/:type', function (ctx, next) {
   } else {
     ctx.body = 'Invalid parameter'
   }
+})
+
+router.post('/', function (ctx, next) {
+  var type = ctx.params.type
+    ctx.body = 'Service usage http://<address>/query_type/artist/title/'
+
 })
 
 function getsong (type, artist, title) {
@@ -98,4 +110,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(8080)
